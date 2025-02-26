@@ -46,39 +46,24 @@ function changeBgColor(element, a = 0.10) {
 }
 
 container.addEventListener("mouseover", (e) => {
+    if (!e.target.classList.contains("item")) return; // Makes sure the target is actually a grid item.
     let hoverCounter = parseInt(e.target.dataset.hover); // Store the current hover count
-    hoverCounter++; // Increase the count
+    hoverCounter++;
     e.target.dataset.hover = hoverCounter; //Store the updated count back in the dataset
 
     let r = e.target.dataset.r;
     let b = e.target.dataset.b;
     let g = e.target.dataset.g;
-    let itemOpacity = 0;
 
+    let itemOpacity = Math.min(hoverCounter * 0.1, 1); // Ensures opacity never exceeds 1
+    itemOpacity = parseFloat(itemOpacity.toFixed(1)); // Ensures only 1 decimal place
 
     if (hoverCounter === 1) {
-        itemOpacity = hoverCounter * 0.1; // calculate the opacity based on the hover counter
-        itemOpacity = parseFloat(itemOpacity.toFixed(1)); // Ensures only 1 decimal place
-
         changeBgColor(e.target, itemOpacity);
-
-        r = e.target.dataset.r;
-        b = e.target.dataset.b;
-        g = e.target.dataset.g;
-        //Store current RGB values
-
-    }
-
-    if (hoverCounter > 1 && hoverCounter <= 10) {
-        e.target.dataset.hover = hoverCounter;
-        itemOpacity = hoverCounter * 0.1;
-        itemOpacity = parseFloat(itemOpacity.toFixed(1));
-
-        //darken effect on the backgorund color using itemOpacity as alpha value
+    } else {
         e.target.style.backgroundColor = 'rgba(' + r + ',' + g + ',' + b + ',' + itemOpacity + ')';
-        //
+        //darken effect on the backgorund color using itemOpacity as alpha value
     }
-
 });
 
 button.addEventListener("click", () => {
