@@ -6,7 +6,7 @@ button.id = "button";
 document.body.insertBefore(button, container);
 
 
-function createSquares(num = 10) {
+function createSquares(num = 16) {
     let squareSize = 400 / num; // Calculates the squares size based on the user's input
 
     for (let i = 0; i < num; i++) {
