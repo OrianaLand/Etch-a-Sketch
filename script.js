@@ -45,10 +45,6 @@ function changeBgColor(element, a = 0.10) {
 
 }
 
-function darkenBgColor(element, r, b, g, a) {
-    element.style.backgroundColor = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
-}
-
 container.addEventListener("mouseover", (e) => {
     let hoverCounter = parseInt(e.target.dataset.hover); // Store the current hover count
     hoverCounter++; // Increase the count
